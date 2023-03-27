@@ -54,20 +54,18 @@
         <el-table-column prop="createTime" label="创建时间" min-width="180" />
       </el-table>
       <div class="pagination-box">
-        <el-config-provider :locale="zhCn">
-          <el-pagination
-            v-model:current-page="paginationInfo.currentPage"
-            v-model:page-size="paginationInfo.pageSize"
-            :page-sizes="[10, 20, 50, 100]"
-            :small="small"
-            :disabled="disabled"
-            :background="true"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="pageTotal"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-          />
-        </el-config-provider>
+        <el-pagination
+          v-model:current-page="paginationInfo.currentPage"
+          v-model:page-size="paginationInfo.pageSize"
+          :page-sizes="[10, 20, 50, 100]"
+          :small="small"
+          :disabled="disabled"
+          :background="true"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="pageTotal"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
       </div>
     </div>
   </div>
@@ -76,8 +74,6 @@
 <script setup name="QualityTesting">
 import { reactive, ref, onMounted, inject } from "vue";
 import { getQrCodeList } from "@/api/planSheet";
-import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 const searchForm = reactive({
   orderCode: "",
@@ -132,14 +128,13 @@ const handleTimeChange = (val) => {
   }
 };
 
-const handleDownloadFile = async(row)=>{
-    try {
-        let res = await downloadQrCode(searchForm)
-
-    } catch (error) {
-        console.log(error)
-    }
-}
+const handleDownloadFile = async (row) => {
+  try {
+    let res = await downloadQrCode(searchForm);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 onMounted(() => {
   getTableList();

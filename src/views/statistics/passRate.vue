@@ -61,8 +61,7 @@
         <el-table-column prop="scanRecordSuccessCount" label="扫码记录成功数量" />
       </el-table>
       <div class="pagination-box">
-        <el-config-provider :locale="zhCn">
-          <el-pagination
+         <el-pagination
             v-model:current-page="paginationInfo.currentPage"
             v-model:page-size="paginationInfo.pageSize"
             :page-sizes="[10, 20, 50, 100]"
@@ -74,7 +73,6 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
-        </el-config-provider>
       </div>
     </div>
   </div>
@@ -83,8 +81,6 @@
 <script setup name="QualityTesting">
 import { reactive, ref, onMounted, inject } from "vue";
 import { getPassRateList } from "@/api/planSheet";
-import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 const scanCodeList = inject("$scanCode");
 const searchForm = reactive({

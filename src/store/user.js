@@ -19,7 +19,8 @@ export const useUserStore = defineStore('user', {
         addUserLogin({ username: username.trim(), password: password })
           .then((response) => {
             const { data } = response
-            this.token = data
+            this.token = data.id
+            sessionStorage.setItem('userInfo',JSON.stringify(data))
             setToken(data)
             resolve()
           })
@@ -31,28 +32,31 @@ export const useUserStore = defineStore('user', {
 
     getInfo() {
       return new Promise((resolve, reject) => {
-        addUserInfo({ token: this.token })
-          .then((response) => {
-            const { data } = response
+        // addUserInfo({ token: this.token })
+        //   .then((response) => {
+        //     const { data } = response
 
-            if (!data) {
-              reject('Verification failed, please Login again.')
-            }
+        //     if (!data) {
+        //       reject('Verification failed, please Login again.')
+        //     }
 
-            const { roles } = data
+            
 
-            // roles must be a non-empty array
-            if (!roles || roles.length <= 0) {
-              reject('getInfo: roles must be a non-null array!')
-            }
+        //     // const { roles } = data
 
-            this.userInfo = data
-            this.roles = roles
-            resolve(data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
+        //     // // roles must be a non-empty array
+        //     // if (!roles || roles.length <= 0) {
+        //     //   reject('getInfo: roles must be a non-null array!')
+        //     // }
+        //     resolve(data)
+        //   })
+        //   .catch((error) => {
+        //     reject(error)
+        //   })
+        const userInfo = sessionStorage.getItem('userInfo')
+        this.userInfo = JSON.parse(userInfo)
+        console.log(userInfo);
+        resolve()
       })
     },
 

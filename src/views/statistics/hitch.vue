@@ -34,15 +34,17 @@
           </el-select>
         </el-form-item>
         <el-form-item label="时间:">
-          <el-date-picker
-            v-model="time"
-            type="daterange"
-            range-separator="-"
-            start-placeholder="开始时间"
-            end-placeholder="结束时间"
-            value-format="YYYY-MM-DD"
-            @change="handleTimeChange"
-          />
+          <el-config-provider :locale="zhCn">
+            <el-date-picker
+              v-model="time"
+              type="daterange"
+              range-separator="-"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              value-format="YYYY-MM-DD"
+              @change="handleTimeChange"
+            />
+          </el-config-provider>
         </el-form-item>
         <el-form-item label="">
           <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
@@ -58,8 +60,7 @@
         <el-table-column prop="merchantSpe" label="百分比" />
       </el-table>
       <div class="pagination-box">
-        <el-config-provider :locale="zhCn">
-          <el-pagination
+         <el-pagination
             v-model:current-page="paginationInfo.currentPage"
             v-model:page-size="paginationInfo.pageSize"
             :page-sizes="[10, 20, 50, 100]"
@@ -71,7 +72,6 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
-        </el-config-provider>
       </div>
     </div>
   </div>
@@ -80,8 +80,6 @@
 <script setup name="QualityTesting">
 import { reactive, ref, onMounted, inject } from "vue";
 import { getHitchList } from "@/api/planSheet";
-import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 const scanCodeList = inject("$scanCode");
 const searchForm = reactive({

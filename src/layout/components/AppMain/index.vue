@@ -1,21 +1,25 @@
 <template>
   <div class="app-main">
-    <router-view v-slot="{ Component }">
-      <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="cachedViews">
-          <component :is="Component" />
-        </keep-alive>
-      </transition>
-    </router-view>
+    <el-config-provider :locale="zhCn">
+      <router-view v-slot="{ Component }">
+        <transition name="fade-transform" mode="out-in">
+          <keep-alive :include="cachedViews">
+            <component :is="Component" />
+          </keep-alive>
+        </transition>
+      </router-view>
+    </el-config-provider>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useTagsViewStore } from '@/store/tagsView'
+import { computed } from "vue";
+import { useTagsViewStore } from "@/store/tagsView";
+import { ElConfigProvider } from "element-plus";
+import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
-const tagsViewStore = useTagsViewStore()
-const cachedViews = computed(() => tagsViewStore.cachedViews)
+const tagsViewStore = useTagsViewStore();
+const cachedViews = computed(() => tagsViewStore.cachedViews);
 </script>
 
 <style lang="scss" scoped>

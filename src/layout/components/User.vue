@@ -6,7 +6,7 @@
           :src="userInfo.avatar + '?imageView2/1/w/80/h/80'"
           class="user-avatar"
         />
-        <div class="user-name">{{ userInfo.name }}</div>
+        <div class="user-name">{{ userInfo.username }}</div>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
