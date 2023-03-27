@@ -19,3 +19,13 @@ const { zIndex } = toRefs(state)
 
 const size = computed(() => settingsStore.size)
 </script>
+<style>
+.table-box{
+  margin-top: 20px;
+}
+.pagination-box{
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+</style>

@@ -21,6 +21,7 @@ module.exports = {
     // "error" or 2 - 将规则视为一个错误
     // 强制使用 === 和 !==
     eqeqeq: 2,
+    endOfLine: 'auto',
     'vue/multi-word-component-names': 'off' // 追加
   }
 }

@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">星火质检系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -66,35 +66,20 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-const validateUsername = (rule, value, callback) => {
-  if (!value) {
-    callback(new Error('Please enter the correct user name'))
-  } else {
-    callback()
-  }
-}
-
-const validatePassword = (rule, value, callback) => {
-  if (value.length < 6) {
-    callback(new Error('The password can not be less than 6 digits'))
-  } else {
-    callback()
-  }
-}
 
 const state = reactive({
   refLoginForm: null,
   refUsername: null,
   refPassword: null,
   loginForm: {
-    username: 'admin',
-    password: '123456789'
+    username: '',
+    password: ''
   },
   loginRules: {
     username: [
-      { required: true, trigger: 'blur', validator: validateUsername }
+      { required: true, trigger: 'blur', message:'请输入用户名' }
     ],
-    password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+    password: [{ required: true, trigger: 'blur',message:'请输入密码' }]
   },
   passwordType: 'password',
   loading: false,

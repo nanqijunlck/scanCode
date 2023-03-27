@@ -2,6 +2,7 @@ import { createApp, nextTick } from 'vue'
 
 import settings from '@/settings'
 import { isString, isArray } from '@/utils/validate'
+import 'element-plus/dist/index.css'
 
 import 'normalize.css' // a modern alternative to CSS resets
 
@@ -20,6 +21,8 @@ import './permission' // permission control
 import { useErrorLogStore } from '@/store/errorLog'
 
 const app = createApp(App)
+app.provide('$uploadApi',import.meta.env.VITE_APP_BASE_API)
+app.provide('$scanCode',['S001', 'S002', 'S003', 'S004'])
 
 app
   .component('SvgIcon', SvgIcon)

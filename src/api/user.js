@@ -1,4 +1,4 @@
-// import request from '@/utils/request'
+import {request} from '@/utils/request'
 
 /**
  * @method addUserLogin 登录
@@ -6,16 +6,11 @@
  * @returns
  */
 export function addUserLogin(data) {
-  if (data.username === 'admin') {
-    return Promise.resolve({ data: { token: 'fanqie-token' } })
-  } else {
-    return Promise.resolve({ data: { token: 'chaodan-token' } })
-  }
-  // return request({
-  //   url: 'user-login',
-  //   method: 'post',
-  //   data
-  // })
+  return request({
+    url: '/1.0/user/login',
+    method: 'post',
+    data
+  })
 }
 
 /**

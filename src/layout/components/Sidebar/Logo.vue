@@ -23,7 +23,7 @@ import { reactive, toRefs, computed } from 'vue'
 import { useSettingsStore } from '@/store/settings'
 
 const state = reactive({
-  title: 'Vue3 Element Plus Admin',
+  title: '星火质检系统',
   logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
 })
 

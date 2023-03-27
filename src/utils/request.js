@@ -3,8 +3,6 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUserStore } from '@/store/user'
 import { getCookies } from '@/utils/storage'
 
-const userStore = useUserStore()
-
 // 业务请求
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API, // url = base url + request url
@@ -12,16 +10,20 @@ const request = axios.create({
   timeout: 5000 // request timeout
 })
 
+let isDownloadFile = false
+
 // request interceptor
 request.interceptors.request.use(
   (config) => {
+    isDownloadFile = config.isDownloadFile||false
+    const userStore = useUserStore()
     // do something before request is sent
 
     if (userStore.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getCookies('Fanqie-Token')
+      config.headers['token'] = getCookies('Fanqie-Token')
     }
     return config
   },
@@ -45,10 +47,13 @@ request.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   (response) => {
-    const res = response.data
 
+    const res = response.data
+    if(isDownloadFile){
+      return res
+    }
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== '10000') {
       ElMessage({
         message: res.message || 'Error',
         type: 'error',

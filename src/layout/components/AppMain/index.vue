@@ -21,6 +21,8 @@ const cachedViews = computed(() => tagsViewStore.cachedViews)
 <style lang="scss" scoped>
 .app-main {
   /* fade */
+  padding: 20px;
+  padding-bottom: 80px;
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.28s;

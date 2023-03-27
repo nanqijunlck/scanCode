@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 /* Layout */
 import Layout from '@/layout/index.vue'
@@ -52,13 +52,101 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/plan-sheet/index',
+    children: [
+    
+    ]
+  },
+  {
+    path: '/plan-sheet',
+    component: Layout,
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        path: 'index',
+        component: () => import('@/views/planSheet/index.vue'),
+        name: 'planSheet',
+        meta: {
+          title: '计划单管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+    {
+    path: '/qr-code',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/qrCode/index.vue'),
+        name: 'qrCode',
+        meta: {
+          title: '二维码管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
+    path: '/quality-testing-record',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/qualityTestingRecord/index.vue'),
+        name: 'qualityTestingRecord',
+        meta: {
+          title: '质检记录管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
+    path: '/quality-testing-question',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/qualityTestingRecord/question.vue'),
+        name: 'qualityTestingQuestion',
+        meta: {
+          title: '质检问题管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
+    path: '/statistics',
+    component: Layout,
+    meta:{
+      title:'数据统计'
+    },
+    children: [
+      {
+        path: 'pass-rate',
+        component: () => import('@/views/statistics/passRate.vue'),
+        name: 'passRate',
+        meta: {
+          title: '合格率',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'hitch',
+        component: () => import('@/views/statistics/hitch.vue'),
+        name: 'hitch',
+        meta: {
+          title: '故障率',
+          icon: 'icon',
+          roles: ['admin']
+        }
       }
     ]
   },
@@ -74,124 +162,12 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: '/chat',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/chat/index.vue'),
-        name: 'Chat',
-        meta: {
-          title: 'Chat',
-          icon: 'icon',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/clipboard',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/clipboard/index.vue'),
-        name: 'Clipboard',
-        meta: {
-          title: 'Clipboard',
-          icon: 'icon',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/markdown',
-    component: Layout,
-    redirect: '/markdown/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/markdown/index.vue'),
-        name: 'Markdown',
-        meta: {
-          title: 'Markdown',
-          icon: 'icon',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/excel',
-    component: Layout,
-    redirect: '/excel/export-excel',
-    meta: {
-      title: 'Excel',
-      icon: 'icon'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: () => import('@/views/excel/export-excel.vue'),
-        name: 'ExportExcel',
-        meta: {
-          title: 'Export Excel'
-        }
-      },
-      {
-        path: 'export-selected-excel',
-        component: () => import('@/views/excel/select-excel.vue'),
-        name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
-      },
-      {
-        path: 'merge-header',
-        component: () => import('@/views/excel/merge-header.vue'),
-        name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel.vue'),
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
-      }
-    ]
-  },
-  {
-    path: '/dom-to-image',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/dom-to-image/index.vue'),
-        name: 'DomToImage',
-        meta: {
-          title: 'DomToImage',
-          icon: 'icon',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/zhihuifanqiechaodan/vue3-admin-template',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
   // 404 page must be placed at the end !!!
   { path: '/:pathchMatch(.*)', redirect: '/404' }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: constantRoutes
 })
 

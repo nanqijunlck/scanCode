@@ -2,10 +2,13 @@
   <div class="default-container">
     <sidebar class="sidebar" />
     <div class="main-container">
-      <div class="fixed-header">
-        <tags-view class="tags-view" />
+      <el-card :body-style="{padding:'10px'}" >
+        <div  class="fixed-header">
+          <!-- <tags-view class="tags-view" /> -->
+          <Breadcrumb/>
         <navbar />
-      </div>
+        </div>
+      </el-card>
       <el-scrollbar class="main-scrollbar">
         <app-main />
       </el-scrollbar>
@@ -17,13 +20,14 @@ import { Sidebar, AppMain } from '@/layout/components/index'
 import { TagsView, Navbar } from '@/layout/default/components/index'
 import { useSettingsStore } from '@/store/settings'
 import { computed } from 'vue'
+import Breadcrumb from '@/layout/classic/components/Navbar/Breadcrumb'
 
 const settingsStore = useSettingsStore()
 // 侧边栏宽度 + 20偏差
 const menuWidth = computed(() =>
   settingsStore.menuCollapse
     ? 'calc(64px + 20px)'
-    : `${settingsStore.menuWidth + 20}px`
+    : `${settingsStore.menuWidth}px`
 )
 </script>
 <style lang="scss" scoped>
@@ -31,15 +35,15 @@ const menuWidth = computed(() =>
   position: relative;
   height: 100%;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #fff;
 
   .sidebar {
     z-index: 1001;
     position: fixed;
-    top: 20px;
+    top: 0;
     bottom: 0;
-    left: 20px;
-    height: calc(100vh - 40px);
+    left: 0;
+    height: 100%;
     overflow: hidden;
     transition: width 0.28s;
     font-size: 0;
@@ -49,7 +53,6 @@ const menuWidth = computed(() =>
     position: relative;
     min-height: 100%;
     margin-left: v-bind(menuWidth);
-    padding: 20px 0;
     transition: margin-left 0.28s;
 
     .fixed-header {
@@ -57,10 +60,7 @@ const menuWidth = computed(() =>
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
-      padding-bottom: 10px;
       box-sizing: border-box;
-      background-color: #f5f5f5;
-
       .tags-view {
         flex: 1;
         margin-right: 10px;
@@ -69,7 +69,7 @@ const menuWidth = computed(() =>
 
     .main-scrollbar {
       // navbar height 50 padding 上下各20
-      height: calc(100vh - 90px);
+      height: 100vh;
     }
   }
 }

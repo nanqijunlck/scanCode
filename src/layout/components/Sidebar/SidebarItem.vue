@@ -9,10 +9,10 @@
     >
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
-          <Item
+          <!-- <Item
             v-if="onlyOneChild.meta.icon || item.meta"
             :icon="onlyOneChild.meta.icon || item.meta.icon"
-          />
+          /> -->
           <template #title>{{ onlyOneChild.meta?.title }}</template>
         </el-menu-item>
       </app-link>
@@ -20,7 +20,7 @@
 
     <el-sub-menu v-else :index="resolvePath(item.path)">
       <template v-if="item.meta" #title>
-        <Item :icon="item.meta.icon" />
+        <!-- <Item :icon="item.meta.icon" /> -->
         <span> {{ item.meta.title }}</span>
       </template>
       <sidebar-item

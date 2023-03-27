@@ -19,8 +19,8 @@ export const useUserStore = defineStore('user', {
         addUserLogin({ username: username.trim(), password: password })
           .then((response) => {
             const { data } = response
-            this.token = data.token
-            setToken(data.token)
+            this.token = data
+            setToken(data)
             resolve()
           })
           .catch((error) => {

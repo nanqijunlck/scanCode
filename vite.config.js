@@ -13,7 +13,10 @@ function resolve(dir) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vue3-admin-template/',
+  base: '/',
+  optimizeDeps:{
+    include: ['element-plus/lib/locale/lang/zh-cn']
+},
   server: {
     open: true,
     host: '0.0.0.0',
@@ -21,7 +24,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'https://xxxx', // 开发环境
-        target: 'https://xxxx', // 测试环境
+        target: 'http://150.158.7.184:9416', // 测试环境
         // target: 'https://xxxx', // 预发环境
         // target: 'https://xxxx', // 生产环境
         changeOrigin: true,

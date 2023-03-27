@@ -292,7 +292,7 @@ onMounted(() => {
       opacity: 0.7;
       transition: background 0.3s;
       white-space: nowrap;
-
+      background-color: #f5f5f5;
       &.active {
         opacity: 1;
         border-radius: 4px;
