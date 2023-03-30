@@ -8,14 +8,14 @@
             placeholder="请输入计划单号"
           ></el-input>
         </el-form-item>
+        <el-form-item label="编码:">
+          <el-input v-model="searchForm.benChangCode" placeholder="请输入编码"></el-input>
+        </el-form-item>
         <el-form-item label="客户代码:">
           <el-input
             v-model="searchForm.merchantCode"
             placeholder="请输入客户代码"
           ></el-input>
-        </el-form-item>
-        <el-form-item label="编码:">
-          <el-input v-model="searchForm.benChangCode" placeholder="请输入编码"></el-input>
         </el-form-item>
         <el-form-item label="客户型号:">
           <el-input
@@ -24,18 +24,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="二维码:">
-          <el-input v-model="searchForm.qrcode" placeholder="请输入二维码编码"></el-input>
-        </el-form-item>
-        <el-form-item label="时间:">
-          <el-date-picker
-            v-model="time"
-            type="daterange"
-            range-separator="-"
-            start-placeholder="开始时间"
-            end-placeholder="结束时间"
-            value-format="YYYY-MM-DD"
-            @change="handleTimeChange"
-          />
+          <el-input v-model="searchForm.qrCode" placeholder="请输入二维码编码"></el-input>
         </el-form-item>
         <el-form-item label="">
           <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
@@ -45,7 +34,7 @@
     </el-card>
     <div class="table-box">
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="roleCode" label="二维码" />
+        <el-table-column prop="qrCode" label="二维码" />
         <el-table-column prop="orderCode" label="计划单号" />
         <el-table-column prop="benChangCode" label="编码" />
         <el-table-column prop="merchantCode" label="客户代码" />
@@ -80,7 +69,7 @@ const searchForm = reactive({
   merchantCode: "",
   benChangCode: "",
   merchantSpe: "",
-  qrcode: "",
+  qrCode: "",
 });
 const paginationInfo = reactive({
   currentPage: 1,
@@ -107,7 +96,7 @@ const handleReset = () => {
   searchForm.merchantCode = "";
   searchForm.benChangCode = "";
   searchForm.merchantSpe = "";
-  searchForm.qrcode = "";
+  searchForm.qrCode = "";
 };
 const handleSizeChange = (val) => {
   paginationInfo.pageSize = val;

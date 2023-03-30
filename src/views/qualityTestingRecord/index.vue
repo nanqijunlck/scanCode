@@ -25,7 +25,7 @@
         </el-form-item>
         <el-form-item label="二维码:">
           <el-input
-            v-model="searchForm.questionCode"
+            v-model="searchForm.qrCode"
             placeholder="请输入二维码"
           ></el-input>
         </el-form-item>
@@ -100,7 +100,7 @@ const handleReset = () => {
   searchForm.merchantCode = "";
   searchForm.benChangCode = "";
   searchForm.merchantSpe = "";
-  searchForm.questionCode = "";
+  searchForm.qrCode = "";
 };
 const handleSizeChange = (val) => {
   paginationInfo.pageSize = val;

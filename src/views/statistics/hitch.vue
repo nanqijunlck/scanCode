@@ -54,10 +54,10 @@
     </el-card>
     <div class="table-box">
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="roleCode" label="问题编码" />
-        <el-table-column prop="benChangCode" label="问题数量" />
-        <el-table-column prop="merchantCode" label="问题描述" min-width="200" />
-        <el-table-column prop="merchantSpe" label="百分比" />
+        <el-table-column prop="questionCode" label="问题编码" />
+        <el-table-column prop="questionCount" label="问题数量" />
+        <el-table-column prop="questionContent" label="问题描述" min-width="200" />
+        <el-table-column prop="questionPercent" label="百分比" />
       </el-table>
       <div class="pagination-box">
          <el-pagination

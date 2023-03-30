@@ -26,19 +26,18 @@
         <el-form-item label="">
           <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
           <el-button type="" size="medium" @click="handleReset">重 置</el-button>
-          <el-button type="success" size="medium" @click="dialogVisible = !dialogVisible"
-            >导入计划单</el-button
-          >
         </el-form-item>
       </el-form>
     </el-card>
     <div class="table-box">
+      <el-button type="success" size="medium" @click="dialogVisible = !dialogVisible">导入计划单</el-button>
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column prop="orderCode" label="计划单号" width="180" />
         <el-table-column prop="benChangCode" label="编码" width="180" />
         <el-table-column prop="merchantCode" label="客户代码" />
         <el-table-column prop="merchantSpe" label="客户型号" />
         <el-table-column prop="quantity" label="数量" />
+        <el-table-column prop="createTime" label="创建时间" />
       </el-table>
       <div class="pagination-box">
         <el-pagination

@@ -24,11 +24,12 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'https://xxxx', // 开发环境
-        target: 'http://150.158.7.184:9416', // 测试环境
+        // target: 'http://150.158.7.184:9416', // 测试环境
+        target: 'http://127.0.0.1:9416', // 测试环境
         // target: 'https://xxxx', // 预发环境
         // target: 'https://xxxx', // 生产环境
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/gitee': {
         target: 'https://raw.githubusercontent.com/zhihuifanqiechaodan',

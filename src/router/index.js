@@ -58,6 +58,22 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/user-manger',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user'),
+        name: 'userManger',
+        meta: {
+          title: '用户管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
     path: '/plan-sheet',
     component: Layout,
     children: [
@@ -144,22 +160,6 @@ export const constantRoutes = [
         name: 'hitch',
         meta: {
           title: '故障率',
-          icon: 'icon',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/user-manger',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/user'),
-        name: 'userManger',
-        meta: {
-          title: '用户管理',
           icon: 'icon',
           roles: ['admin']
         }

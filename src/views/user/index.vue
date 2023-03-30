@@ -8,7 +8,7 @@
                </el-select>
             </el-form-item>
             <el-form-item label="用户名:">
-               <el-input v-model="searchForm.username" placeholder="请输入用户名"></el-input>
+               <el-input v-model="searchForm.username" placeholder="请输入用户名,模糊查询"></el-input>
             </el-form-item>
             <el-form-item label="手机号:">
                <el-input v-model="searchForm.phone" placeholder="请输入手机"></el-input>
@@ -16,18 +16,18 @@
             <el-form-item label="">
                <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
                <el-button type="" size="medium" @click="handleReset">重 置</el-button>
-                <el-button type="primary" size="medium" @click="handleAdd">新 增</el-button>
             </el-form-item>
          </el-form>
       </el-card>
       <div class="table-box">
+        <el-button type="primary" size="medium" @click="handleAdd">新 增</el-button>
          <el-table :data="tableData" border style="width: 100%" v-loading="loading">
              <el-table-column prop="username" label="用户名" />
               <el-table-column prop="password" label="密码" />
             <el-table-column prop="roleCode" label="扫码枪编号" />
             <el-table-column prop="phone" label="手机号" />
-            <el-table-column prop="updateTime" label="创建时间" min-width="60" />
-            <el-table-column prop="createTime" label="更新时间" min-width="60" />
+            <el-table-column prop="updateTime" label="创建时间" min-width="80" />
+            <el-table-column prop="createTime" label="更新时间" min-width="80" />
             <el-table-column label="操作">
                <template #default="scope">
                   <el-button type="" size="mini" @click="handleEdit(scope.row)">修改</el-button>
@@ -159,7 +159,7 @@ const formRules = reactive({
       { required: true, message: '请选择扫码枪编码', trigger: 'change' }
    ],
    phone: [
-      { required: true, message: '请输入手机号', trigger: 'blur' }
+      { message: '请输入手机号', trigger: 'blur' }
    ],
 })
 
@@ -179,14 +179,15 @@ const handleAdd = ()=>{
    formRules.value.clearValidate()
 }
 
-const handleEdit = ({phone,roleCode,username,password})=>{
-   formData.roleCode = roleCode
-   formData.username = username
-   formData.password = password
-   formData.phone = phone
-   formData.id = id
-   dialogVisible.value = true
-   formRules.value.clearValidate()
+const handleEdit = ({phone, roleCode, username, password, id}) => {
+  console.log(phone, roleCode, username, password)
+  formData.roleCode = roleCode
+  formData.username = username
+  formData.password = password
+  formData.phone = phone
+  formData.id = id
+  dialogVisible.value = true
+  formRules.value.clearValidate()
 }
 
 const handleSubmit =  (formEl) => {
@@ -204,7 +205,6 @@ const handleSubmit =  (formEl) => {
          }
       }
    })
-
 }
 
 </script>
