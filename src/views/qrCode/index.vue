@@ -32,31 +32,33 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <div class="table-box">
-      <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="qrCode" label="二维码" />
-        <el-table-column prop="orderCode" label="计划单号" />
-        <el-table-column prop="benChangCode" label="编码" />
-        <el-table-column prop="merchantCode" label="客户代码" />
-        <el-table-column prop="merchantSpe" label="客户型号" />
-        <el-table-column prop="quantity" label="数量" />
-        <el-table-column prop="createTime" label="创建时间" min-width="180" />
-      </el-table>
-      <div class="pagination-box">
-        <el-pagination
-          v-model:current-page="paginationInfo.currentPage"
-          v-model:page-size="paginationInfo.pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          :small="small"
-          :disabled="disabled"
-          :background="true"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="pageTotal"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-    </div>
+    <table-container>
+      <template v-slot:content>
+        <el-table :data="tableData" border style="width: 100%">
+          <el-table-column prop="qrCode" label="二维码" />
+          <el-table-column prop="orderCode" label="计划单号" />
+          <el-table-column prop="benChangCode" label="编码" />
+          <el-table-column prop="merchantCode" label="客户代码" />
+          <el-table-column prop="merchantSpe" label="客户型号" />
+          <el-table-column prop="quantity" label="数量" />
+          <el-table-column prop="createTime" label="创建时间" min-width="180" />
+        </el-table>
+        <div class="pagination-box">
+          <el-pagination
+            v-model:current-page="paginationInfo.currentPage"
+            v-model:page-size="paginationInfo.pageSize"
+            :page-sizes="[10, 20, 50, 100]"
+            :small="small"
+            :disabled="disabled"
+            :background="true"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="pageTotal"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+        </div>
+      </template>
+    </table-container>
   </div>
 </template>
 

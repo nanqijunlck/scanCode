@@ -24,10 +24,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="二维码:">
-          <el-input
-            v-model="searchForm.qrCode"
-            placeholder="请输入二维码"
-          ></el-input>
+          <el-input v-model="searchForm.qrCode" placeholder="请输入二维码"></el-input>
         </el-form-item>
         <el-form-item label="">
           <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
@@ -35,33 +32,35 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <div class="table-box">
-      <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="qrCode" label="二维码" min-width="200" />
-        <el-table-column prop="orderCode" label="计划单号" />
-        <el-table-column prop="benChangCode" label="编码" />
-        <el-table-column prop="merchantCode" label="客户代码" />
-        <el-table-column prop="merchantSpe" label="客户型号" />
-        <el-table-column prop="roleCode" label="扫码枪编号" min-width="100" />
-        <el-table-column prop="questionContent" label="问题描述" min-width="200" />
-        <el-table-column prop="qualityStatus" label="状态" />
-        <el-table-column prop="createTime" label="创建时间" min-width="180" />
-      </el-table>
-      <div class="pagination-box">
-        <el-pagination
-          v-model:current-page="paginationInfo.currentPage"
-          v-model:page-size="paginationInfo.pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          :small="small"
-          :disabled="disabled"
-          :background="true"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="pageTotal"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-    </div>
+    <table-container>
+      <template v-slot:content>
+        <el-table :data="tableData" border style="width: 100%">
+          <el-table-column prop="qrCode" label="二维码" min-width="200" />
+          <el-table-column prop="orderCode" label="计划单号" />
+          <el-table-column prop="benChangCode" label="编码" />
+          <el-table-column prop="merchantCode" label="客户代码" />
+          <el-table-column prop="merchantSpe" label="客户型号" />
+          <el-table-column prop="roleCode" label="扫码枪编号" min-width="100" />
+          <el-table-column prop="questionContent" label="问题描述" min-width="200" />
+          <el-table-column prop="qualityStatus" label="状态" />
+          <el-table-column prop="createTime" label="创建时间" min-width="180" />
+        </el-table>
+        <div class="pagination-box">
+          <el-pagination
+            v-model:current-page="paginationInfo.currentPage"
+            v-model:page-size="paginationInfo.pageSize"
+            :page-sizes="[10, 20, 50, 100]"
+            :small="small"
+            :disabled="disabled"
+            :background="true"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="pageTotal"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+        </div>
+      </template>
+    </table-container>
   </div>
 </template>
 
