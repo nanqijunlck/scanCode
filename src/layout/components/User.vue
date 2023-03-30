@@ -3,7 +3,7 @@
     <el-dropdown trigger="click">
       <div class="user-wrapper">
         <img
-          :src="userInfo.avatar + '?imageView2/1/w/80/h/80'"
+          src="../../assets/pc_administration_sq.png"
           class="user-avatar"
         />
         <div class="user-name">{{ userInfo.username }}</div>

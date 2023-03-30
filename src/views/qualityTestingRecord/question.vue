@@ -26,49 +26,55 @@
         <el-form-item label="">
           <el-button type="primary" size="medium" @click="handleSearch">查 询</el-button>
           <el-button type="" size="medium" @click="handleReset">重 置</el-button>
-          <el-button type="primary" size="medium" @click="handleAdd">新 增</el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <div class="table-box">
-      <el-table :data="tableData" border style="width: 100%" v-loading="loading">
-        <el-table-column prop="roleCode" label="扫码枪编号" />
-        <el-table-column prop="questionCode" label="问题编码" />
-        <el-table-column prop="questionContent" label="问题描述" min-width="100" />
-        <el-table-column prop="updateTime" label="创建时间" min-width="60" />
-        <el-table-column prop="createTime" label="更新时间" min-width="60" />
-        <el-table-column label="操作">
-          <template #default="scope">
-            <el-button type="" size="mini" @click="handleEdit(scope.row)">修改</el-button>
-            <el-popconfirm
-              width="220"
-              confirm-button-text="确定"
-              cancel-button-text="取消"
-              title="是否确认删除?"
-              @confirm="handleDelete(scope.row)"
-            >
-              <template #reference>
-                <el-button size="mini" type="danger">删除</el-button>
-              </template>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div class="pagination-box">
-        <el-pagination
-          v-model:current-page="paginationInfo.currentPage"
-          v-model:page-size="paginationInfo.pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          :small="small"
-          :disabled="disabled"
-          :background="true"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="pageTotal"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-    </div>
+    <table-container>
+      <template v-slot:opreate>
+        <el-button type="primary" size="medium" @click="handleAdd">新 增</el-button>
+      </template>
+      <template v-slot:content>
+        <el-table :data="tableData" border style="width: 100%" v-loading="loading">
+          <el-table-column prop="roleCode" label="扫码枪编号" />
+          <el-table-column prop="questionCode" label="问题编码" />
+          <el-table-column prop="questionContent" label="问题描述" min-width="100" />
+          <el-table-column prop="updateTime" label="创建时间" min-width="60" />
+          <el-table-column prop="createTime" label="更新时间" min-width="60" />
+          <el-table-column label="操作">
+            <template #default="scope">
+              <el-button type="" size="mini" @click="handleEdit(scope.row)"
+                >修改</el-button
+              >
+              <el-popconfirm
+                width="220"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                title="是否确认删除?"
+                @confirm="handleDelete(scope.row)"
+              >
+                <template #reference>
+                  <el-button size="mini" type="danger">删除</el-button>
+                </template>
+              </el-popconfirm>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="pagination-box">
+          <el-pagination
+            v-model:current-page="paginationInfo.currentPage"
+            v-model:page-size="paginationInfo.pageSize"
+            :page-sizes="[10, 20, 50, 100]"
+            :small="small"
+            :disabled="disabled"
+            :background="true"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="pageTotal"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+        </div>
+      </template>
+    </table-container>
     <el-dialog
       v-model="dialogVisible"
       title="编辑问题"

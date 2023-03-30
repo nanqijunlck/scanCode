@@ -52,15 +52,16 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <div class="table-box">
-      <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="questionCode" label="问题编码" />
-        <el-table-column prop="questionCount" label="问题数量" />
-        <el-table-column prop="questionContent" label="问题描述" min-width="200" />
-        <el-table-column prop="questionPercent" label="百分比" />
-      </el-table>
-      <div class="pagination-box">
-         <el-pagination
+    <table-container>
+      <template v-slot:content>
+        <el-table :data="tableData" border style="width: 100%">
+          <el-table-column prop="questionCode" label="问题编码" />
+          <el-table-column prop="questionCount" label="问题数量" />
+          <el-table-column prop="questionContent" label="问题描述" min-width="200" />
+          <el-table-column prop="questionPercent" label="百分比" />
+        </el-table>
+        <div class="pagination-box">
+          <el-pagination
             v-model:current-page="paginationInfo.currentPage"
             v-model:page-size="paginationInfo.pageSize"
             :page-sizes="[10, 20, 50, 100]"
@@ -72,8 +73,9 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
-      </div>
-    </div>
+        </div>
+      </template>
+    </table-container>
   </div>
 </template>
 

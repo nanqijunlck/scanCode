@@ -3,6 +3,7 @@ import { createApp, nextTick } from 'vue'
 import settings from '@/settings'
 import { isString, isArray } from '@/utils/validate'
 import 'element-plus/dist/index.css'
+import TableContainer from '@/components/TableContainer'
 
 import 'normalize.css' // a modern alternative to CSS resets
 
@@ -27,6 +28,7 @@ app.provide('$scanCode',['1号枪', '2号枪', '3号枪', '4号枪'])
 app
   .component('SvgIcon', SvgIcon)
   .component('Pagination', Pagination)
+  .component('TableContainer',TableContainer)
   .use(createPinia())
   .use(router)
   .mount('#app')
