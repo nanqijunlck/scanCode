@@ -130,7 +130,7 @@ export const constantRoutes = [
         component: () => import('@/views/qualityTestingRecord/question.vue'),
         name: 'qualityTestingQuestion',
         meta: {
-          title: '质检问题管理',
+          title: '质检故障管理',
           icon: 'icon',
           roles: ['admin']
         }

@@ -23,8 +23,8 @@
             placeholder="请输入客户型号"
           ></el-input>
         </el-form-item>
-        <el-form-item label="扫码枪编码:">
-          <el-select v-model="searchForm.roleCode" placeholder="选择扫码枪编码">
+        <el-form-item label="检测工位:">
+          <el-select v-model="searchForm.roleCode" placeholder="选择检测工位">
             <el-option
               v-for="item in scanCodeList"
               :key="item"
@@ -56,7 +56,7 @@
           <el-table-column prop="lastSuccessPercent" label="百分百下线合格率(%)" />
           <el-table-column prop="noQuestionPercent" label="一次性合格率(%)" />
           <el-table-column prop="questionCode" label="商户编码" />
-          <el-table-column prop="questionContent" label="问题描述" />
+          <el-table-column prop="questionContent" label="故障描述" />
           <el-table-column prop="scanRecordCount" label="扫码记录数" />
           <el-table-column prop="scanRecordErrorCount" label="扫码记录异常数量" />
           <el-table-column prop="scanRecordSuccessCount" label="扫码记录成功数量" />

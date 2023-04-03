@@ -23,7 +23,7 @@ import { useErrorLogStore } from '@/store/errorLog'
 
 const app = createApp(App)
 app.provide('$uploadApi',import.meta.env.VITE_APP_BASE_API)
-app.provide('$scanCode',['1号枪', '2号枪', '3号枪', '4号枪'])
+app.provide('$scanCode',['调试', '老化', '试焊', '综合测试', '维修'])
 
 app
   .component('SvgIcon', SvgIcon)

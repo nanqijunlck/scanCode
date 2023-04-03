@@ -40,8 +40,9 @@
           <el-table-column prop="benChangCode" label="编码" />
           <el-table-column prop="merchantCode" label="客户代码" />
           <el-table-column prop="merchantSpe" label="客户型号" />
-          <el-table-column prop="roleCode" label="扫码枪编号" min-width="100" />
-          <el-table-column prop="questionContent" label="问题描述" min-width="200" />
+          <el-table-column prop="roleCode" label="检测工位" min-width="100" />
+          <el-table-column prop="questionContent" label="故障描述" min-width="200" />
+          <el-table-column prop="repairContent" label="维修记录" min-width="200" />
           <el-table-column prop="qualityStatus" label="状态" />
           <el-table-column prop="createTime" label="创建时间" min-width="180" />
         </el-table>

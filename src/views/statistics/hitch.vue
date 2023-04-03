@@ -23,8 +23,8 @@
             placeholder="请输入客户型号"
           ></el-input>
         </el-form-item>
-        <el-form-item label="扫码枪编码:">
-          <el-select v-model="searchForm.roleCode" placeholder="选择扫码枪编码">
+        <el-form-item label="检测工位:">
+          <el-select v-model="searchForm.roleCode" placeholder="选择检测工位">
             <el-option
               v-for="item in scanCodeList"
               :key="item"
@@ -55,9 +55,9 @@
     <table-container>
       <template v-slot:content>
         <el-table :data="tableData" border style="width: 100%">
-          <el-table-column prop="questionCode" label="问题编码" />
-          <el-table-column prop="questionCount" label="问题数量" />
-          <el-table-column prop="questionContent" label="问题描述" min-width="200" />
+          <el-table-column prop="questionCode" label="故障编码" />
+          <el-table-column prop="questionCount" label="故障数量" />
+          <el-table-column prop="questionContent" label="故障描述" min-width="200" />
           <el-table-column prop="questionPercent" label="百分比" />
         </el-table>
         <div class="pagination-box">

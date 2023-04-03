@@ -2,10 +2,10 @@
   <div class="clipboard-container">
     <el-card :body-style="{ padding: '20px' }">
       <el-form :model="searchForm" :inline="true">
-        <el-form-item label="扫码枪编号:">
+        <el-form-item label="检测工位:">
           <el-select
             v-model="searchForm.roleCode"
-            placeholder="选择扫码枪编码"
+            placeholder="选择检测工位"
             clearable
             @clear="searchForm.roleCode = ''"
           >
@@ -20,7 +20,7 @@
         <el-form-item label="用户名:">
           <el-input
             v-model="searchForm.questionCode"
-            placeholder="请输入问题编号"
+            placeholder="请输入故障编号"
           ></el-input>
         </el-form-item>
         <el-form-item label="">
@@ -35,9 +35,9 @@
       </template>
       <template v-slot:content>
         <el-table :data="tableData" border style="width: 100%" v-loading="loading">
-          <el-table-column prop="roleCode" label="扫码枪编号" />
-          <el-table-column prop="questionCode" label="问题编码" />
-          <el-table-column prop="questionContent" label="问题描述" min-width="100" />
+          <el-table-column prop="roleCode" label="检测工位" />
+          <el-table-column prop="questionCode" label="故障编码" />
+          <el-table-column prop="questionContent" label="故障描述" min-width="100" />
           <el-table-column prop="updateTime" label="创建时间" min-width="60" />
           <el-table-column prop="createTime" label="更新时间" min-width="60" />
           <el-table-column label="操作">
@@ -77,7 +77,7 @@
     </table-container>
     <el-dialog
       v-model="dialogVisible"
-      title="编辑问题"
+      title="编辑故障"
       width="500px"
       :close-on-click-modal="false"
       :before-close="handleClose"
@@ -89,8 +89,8 @@
         ref="ruleFormRef"
         label-width="120"
       >
-        <el-form-item label="扫码枪编号" prop="roleCode">
-          <el-select v-model="formData.roleCode" placeholder="选择扫码枪编码">
+        <el-form-item label="检测工位" prop="roleCode">
+          <el-select v-model="formData.roleCode" placeholder="选择检测工位">
             <el-option
               v-for="item in scanCodeList"
               :key="item"
@@ -99,13 +99,13 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="问题编码" prop="questionCode">
+        <el-form-item label="故障编码" prop="questionCode">
           <el-input
             v-model="formData.questionCode"
-            placeholder="请输入问题编码"
+            placeholder="请输入故障编码"
           ></el-input>
         </el-form-item>
-        <el-form-item label="问题描述" prop="questionContent">
+        <el-form-item label="故障描述" prop="questionContent">
           <el-input
             v-model="formData.questionContent"
             :autosize="{ minRows: 2, maxRows: 4 }"
@@ -135,7 +135,7 @@
 import { reactive, ref, onMounted } from "vue";
 import { getQualityTestingQuestion, deleteOr, addOrUpdate } from "@/api/planSheet";
 
-const scanCodeList = ref(["1号枪", "2号枪", "3号枪", "4号枪"]);
+const scanCodeList = ref(["调试", "老化", "试焊", "综合测试", "维修"]);
 const loading = ref(false);
 const dialogVisible = ref(false);
 const searchForm = reactive({
@@ -205,9 +205,9 @@ const formData = reactive({
 });
 
 const formRules = reactive({
-  questionCode: [{ required: true, message: "请输入问题编号", trigger: "blur" }],
-  roleCode: [{ required: true, message: "请选择扫码枪编码", trigger: "change" }],
-  questionContent: [{ required: true, message: "请输入问题描述", trigger: "blur" }],
+  questionCode: [{ required: true, message: "请输入故障编号", trigger: "blur" }],
+  roleCode: [{ required: true, message: "请选择检测工位", trigger: "change" }],
+  questionContent: [{ required: true, message: "请输入故障描述", trigger: "blur" }],
 });
 
 const submitLoading = ref(false);

@@ -2,10 +2,10 @@
   <div class="clipboard-container">
     <el-card :body-style="{ padding: '20px' }">
       <el-form :model="searchForm" :inline="true">
-        <el-form-item label="扫码枪编号:">
+        <el-form-item label="检测工位:">
           <el-select
             v-model="searchForm.roleCode"
-            placeholder="选择扫码枪编码"
+            placeholder="选择检测工位"
             clearable
             @clear="searchForm.roleCode = ''"
           >
@@ -40,7 +40,7 @@
         <el-table :data="tableData" border style="width: 100%" v-loading="loading">
           <el-table-column prop="username" label="用户名" />
           <el-table-column prop="password" label="密码" />
-          <el-table-column prop="roleCode" label="扫码枪编号" />
+          <el-table-column prop="roleCode" label="检测工位" />
           <el-table-column prop="phone" label="手机号" />
           <el-table-column prop="updateTime" label="创建时间" min-width="80" />
           <el-table-column prop="createTime" label="更新时间" min-width="80" />
@@ -93,7 +93,7 @@
         ref="ruleFormRef"
         label-width="120"
       >
-        <el-form-item label="扫码枪编号" prop="roleCode">
+        <el-form-item label="检测工位" prop="roleCode">
           <el-select v-model="formData.roleCode" placeholder="选择扫码枪编码">
             <el-option
               v-for="item in scanCodeList"
@@ -208,7 +208,7 @@ const formData = reactive({
 const formRules = reactive({
   username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-  roleCode: [{ required: true, message: "请选择扫码枪编码", trigger: "change" }],
+  roleCode: [{ required: true, message: "请选择检测工位", trigger: "change" }],
   phone: [{ message: "请输入手机号", trigger: "blur" }],
 });
 
