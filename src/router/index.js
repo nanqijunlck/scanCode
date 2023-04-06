@@ -138,6 +138,22 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/quality-testing-repair',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/qualityTestingRecord/repair.vue'),
+        name: 'qualityTestingQuestionRepair',
+        meta: {
+          title: '故障维修管理',
+          icon: 'icon',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
     path: '/statistics',
     component: Layout,
     meta:{

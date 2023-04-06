@@ -23,10 +23,24 @@ export function getQualityTestingQuestion(params) {
       data:params
    })
 }
-
+export function getQualityTestingQuestionRepair(params) {
+   return request({
+      url:'/1.0/question/repairPageQuery',
+      method:'post',
+      data:params
+   })
+}
 export function addOrUpdate(params) {
    return request({
       url:'/1.0/question/addOrUpdate',
+      method:'post',
+      data:params
+   })
+}
+
+export function addOrUpdateRepair(params) {
+   return request({
+      url:'/1.0/question/addOrUpdateRepair',
       method:'post',
       data:params
    })
