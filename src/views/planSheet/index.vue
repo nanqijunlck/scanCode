@@ -66,6 +66,7 @@
       width="30%"
       :close-on-click-modal="false"
       :before-close="handleClose"
+      @open="closeFile"
     >
       <el-upload
         class="upload-demo"

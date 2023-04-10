@@ -4,7 +4,7 @@
       <el-form :model="searchForm" :inline="true">
         <el-form-item label="故障编码:">
           <el-input
-            v-model="searchForm.questionCode"
+            v-model="searchForm.repairQuestionCode"
             placeholder="请输入故障编号"
           ></el-input>
         </el-form-item>
@@ -16,6 +16,7 @@
     </el-card>
     <table-container>
       <template v-slot:content>
+        <el-button type="primary" size="medium" @click="handleAddNew()">新 增</el-button>
         <el-table :data="tableData" border style="width: 100%" v-loading="loading">
           <el-table-column prop="questionCode" label="维修编码" />
           <el-table-column prop="questionContent" label="维修描述" min-width="100" />
@@ -23,7 +24,7 @@
           <el-table-column prop="repairQuestionContent" label="故障内容" />
           <el-table-column prop="updateTime" label="创建时间" min-width="60" />
           <el-table-column prop="createTime" label="更新时间" min-width="60" />
-          <el-table-column label="操作" min-width="100">
+          <el-table-column label="操作" min-width="120">
             <template #default="scope">
               <el-button type="primary" size="medium" @click="handleAdd(scope.row)">新 增</el-button>
               <el-button type="" size="mini" @click="handleEdit(scope.row)"
@@ -59,6 +60,13 @@
         </div>
       </template>
     </table-container>
+    <el-dialog
+      v-model="dialogAdd"
+      title="新增维修"
+      width="500px"
+      :close-on-click-modal="false"
+      :before-close="handleClose"
+    >
     <el-dialog
       v-model="dialogVisible"
       title="编辑故障"
@@ -122,9 +130,11 @@
 </template>
 
 <script setup name="TestingQuestion">
+import {useRoute} from 'vue-router';
 import { reactive, ref, onMounted } from "vue";
 import { getQualityTestingQuestionRepair, deleteOr, addOrUpdateRepair } from "@/api/planSheet";
 
+const route = useRoute();
 const scanCodeList = ref(["调试", "老化", "试焊", "综合测试", "维修"]);
 const loading = ref(false);
 const dialogVisible = ref(false);
@@ -175,6 +185,7 @@ const handleCurrentChange = (val) => {
 };
 
 onMounted(() => {
+  searchForm.repairQuestionCode = route.query.questionCode;
   getTableList();
 });
 
@@ -215,6 +226,13 @@ const handleAdd = ({ questionCode, roleCode, questionContent }) => {
   formData.roleCode = roleCode;
   formData.questionCode = questionCode;
   formData.questionContent = questionContent;
+  dialogVisible.value = true;
+  formRules.value.clearValidate();
+};
+const handleAddNew = () => {
+  formData.roleCode = '';
+  formData.questionCode = '';
+  formData.questionContent = '';
   dialogVisible.value = true;
   formRules.value.clearValidate();
 };

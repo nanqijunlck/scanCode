@@ -33,6 +33,9 @@
       </el-form>
     </el-card>
     <table-container>
+      <template v-slot:opreate>
+        <el-button type="primary" size="medium" @click="handleExport">导出</el-button>
+      </template>
       <template v-slot:content>
         <el-table :data="tableData" border style="width: 100%">
           <el-table-column prop="qrCode" label="二维码" min-width="200" />
@@ -67,7 +70,7 @@
 
 <script setup name="QualityTesting">
 import { reactive, ref, onMounted, inject } from "vue";
-import { getQualityTestingRecord } from "@/api/planSheet";
+import { getQualityTestingRecord, getQualityTestingDownload } from "@/api/planSheet";
 const searchForm = reactive({
   orderCode: "",
   merchantCode: "",
@@ -95,6 +98,23 @@ const handleSearch = () => {
   paginationInfo.currentPage = 1;
   getTableList();
 };
+const handleExport = async () => {
+  try {
+    const data = await getQualityTestingDownload({ ...searchForm });
+    const blob = new Blob([data], {type: "application/vnd.ms-excel"});
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const filename="质检记录.xlsx";
+    a.style.display = 'none'
+    a.href = objectUrl
+    a.download = filename
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(objectUrl);
+  } catch (error) {
+    console.log(error);
+  }
+}
 const handleReset = () => {
   searchForm.orderCode = "";
   searchForm.merchantCode = "";

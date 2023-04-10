@@ -16,6 +16,16 @@ export function getQualityTestingRecord(params) {
    })
 }
 
+export function getQualityTestingDownload(params) {
+   return request({
+      url:'/1.0/qualityOrder/download',
+      method:'post',
+      data:params,
+      responseType:'blob',
+      isDownloadFile: true
+   })
+}
+
 export function getQualityTestingQuestion(params) {
    return request({
       url:'/1.0/question/pageQuery',

@@ -136,7 +136,8 @@
 import { reactive, ref, onMounted } from "vue";
 import { getQualityTestingQuestion, deleteOr, addOrUpdate } from "@/api/planSheet";
 import {useUserStore} from "@/store/user";
-
+import {useRouter} from 'vue-router';
+const router = useRouter();
 const scanCodeList = ref(["调试", "老化", "试焊", "综合测试", "维修"]);
 const loading = ref(false);
 const dialogVisible = ref(false);
@@ -236,8 +237,11 @@ const handleEdit = ({ questionCode, roleCode, questionContent, id }) => {
   formRules.value.clearValidate();
 };
 
-const handleRepair = () => {
-  this.$router.go(-1);
+const handleRepair = ({questionCode}) => {
+  router.push({path:'/quality-testing-repair/index',
+  query:{
+    questionCode:questionCode
+  }});
 };
 
 const handleSubmit = (formEl) => {
